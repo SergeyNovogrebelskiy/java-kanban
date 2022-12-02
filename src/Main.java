@@ -1,6 +1,8 @@
-public class Main {
+import manager.TaskManager;
+import manager.TaskManager.*;
+import task.Task;
 
-    public static void main(String[] args) {
-        System.out.println("Поехали!");
-    }
+public class Main {
+    TaskManager taskManager = new TaskManager();
+    t
 }
