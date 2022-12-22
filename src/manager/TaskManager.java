@@ -6,19 +6,20 @@ import task.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class TaskManager {
     private int id = 1;
     private HashMap<Integer, Task> tasks = new HashMap<>();
     private HashMap<Integer, Epic> epics = new HashMap<>();
     private HashMap<Integer, Subtask> subtasks = new HashMap<>();
-    public ArrayList<Task> getTasks() {
+    public List<Task> getTasks() {
         return new ArrayList<>(tasks.values());
     }
-    public ArrayList<Epic> getEpics() {
+    public List<Epic> getEpics() {
         return new ArrayList<>(epics.values());
     }
-    public ArrayList<Subtask> getSubtasks() {
+    public List<Subtask> getSubtasks() {
         return new ArrayList<>(subtasks.values());
     }
 
@@ -55,6 +56,7 @@ public class TaskManager {
     }
     public void addOjectEpic(Epic epic){
         epics.put(epic.getId(), epic);
+        calculateStatusEpic(epic.getId());
     }
     public void addOjectSubtask(Subtask subtask){
         subtasks.put(subtask.getId(), subtask);
@@ -73,11 +75,11 @@ public class TaskManager {
         }
         calculateStatusEpic(id);
     }
-    public void updateSubtasks(Subtask subtask) {
+    public void updateSubtask(Subtask subtask) {
         int id = subtask.getId();
         if(subtasks.containsKey(id)) {
             subtasks.remove(id);
-            addOjectSubtask(subtask);
+            subtasks.put(subtask.getId(), subtask);
             ArrayList<Integer> idSubtasks = (epics.get(subtask.getIdEpic())).getSubtasks();
             for (int i = 0; i < idSubtasks.size(); i++){
                 if(idSubtasks.get(i) == id){

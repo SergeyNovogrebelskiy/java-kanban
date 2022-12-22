@@ -4,6 +4,7 @@ import task.Subtask;
 import task.Task;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -36,11 +37,11 @@ public class Main {
         taskManager.updateTasks(new Task(2, "Name Task 2 update",
                 "Description Task 2 update", "DONE"));
 
-        taskManager.updateSubtasks(new Subtask(5, "Subtask 1 for epic 1 update",
+        taskManager.updateSubtask(new Subtask(5, "Subtask 1 for epic 1 update",
                 "Description subtask 1 for epic 1 update", "DONE", 3, taskManager));
-        taskManager.updateSubtasks(new Subtask(6, "Subtask 2 for epic 1 update",
+        taskManager.updateSubtask(new Subtask(6, "Subtask 2 for epic 1 update",
                 "Description subtask 2 for epic 1 update", "DONE", 3, taskManager));
-        taskManager.updateSubtasks(new Subtask(7, "Subtask 1 for epic 2 update",
+        taskManager.updateSubtask(new Subtask(7, "Subtask 1 for epic 2 update",
                 "Description subtask 1 for epic 2 update", "IN_PROGRESS", 4, taskManager));
 
         printTask(taskManager, 1);
@@ -76,21 +77,21 @@ public class Main {
     }
 
     public static void printNameTasks(TaskManager taskManager){
-        ArrayList<Task> listTasks = taskManager.getTasks();
+        List<Task> listTasks = taskManager.getTasks();
         for (int i = 0; i < listTasks.size(); i++) {
             System.out.print(listTasks.get(i).getName() + "  ");
         }
         System.out.println();
     }
     public static void printNameEpics(TaskManager taskManager){
-        ArrayList<Epic> listEpics = taskManager.getEpics();
+        List<Epic> listEpics = taskManager.getEpics();
         for (int i = 0; i < listEpics.size(); i++) {
             System.out.print(listEpics.get(i).getName() + "  ");
         }
         System.out.println();
     }
     public static void printNameSubtask(TaskManager taskManager){
-        ArrayList<Subtask> listSubtask = taskManager.getSubtasks();
+        List<Subtask> listSubtask = taskManager.getSubtasks();
         for (int i = 0; i < listSubtask.size(); i++) {
             System.out.print(listSubtask.get(i).getName() + "  ");
         }
