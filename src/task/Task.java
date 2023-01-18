@@ -6,26 +6,13 @@ public class Task {
     private int id;
     private String name;
     private String description;
-    private String status;
+    Statuses status;
 
-    public Task(int id, String name, String description, String status) {
+    public Task(int id, String name, String description, Statuses status) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.status = status;
-    }
-
-    public Task(String name, String description) {
-        this.name = name;
-        this.description = description;
-        this.status = "NEW";
-    }
-
-    public Task(int id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.status = "NEW";
     }
 
     public int getId() {
@@ -52,11 +39,11 @@ public class Task {
         this.description = description;
     }
 
-    public String getStatus() {
+    public Statuses getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Statuses status) {
         this.status = status;
     }
 

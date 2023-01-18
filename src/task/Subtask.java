@@ -1,5 +1,6 @@
 package task;
 
+import manager.InMemoryTaskManager;
 import manager.TaskManager;
 
 import java.util.Objects;
@@ -7,10 +8,10 @@ import java.util.Objects;
 public class Subtask extends Task {
 
     int idEpic;
-    public Subtask(int id, String name, String description, String status, int idEpic, TaskManager taskManager) {
+    public Subtask(int id, String name, String description, Statuses status, int idEpic, TaskManager taskManager) {
         super(id, name, description, status);
         this.idEpic = idEpic;
-        (taskManager.getEpic(idEpic)).addSubtaskToEpic(id);
+        (taskManager.getEpicForConstructorSubtask(idEpic)).addSubtaskToEpic(id);
     }
 
     public int getIdEpic() {
