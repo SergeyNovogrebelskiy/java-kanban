@@ -2,7 +2,7 @@ import manager.HistoryManager;
 import manager.Managers;
 import manager.TaskManager;
 import task.Epic;
-import task.Statuses;
+import task.enums.Statuses;
 import task.Subtask;
 import task.Task;
 

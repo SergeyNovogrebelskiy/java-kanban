@@ -1,5 +1,7 @@
 package task;
 
+import task.enums.Statuses;
+
 import java.util.Objects;
 
 public class Task {

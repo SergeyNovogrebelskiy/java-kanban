@@ -1,14 +1,13 @@
 package manager;
 
 import task.Epic;
-import task.Statuses;
+import task.enums.Statuses;
 import task.Subtask;
 import task.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class InMemoryTaskManager implements TaskManager {
     private int id = 1;
