@@ -7,8 +7,6 @@ import task.Task;
 import java.util.List;
 
 public interface TaskManager {
-    List<Task> getHistory();
-
     List<Task> getTasks();
     List<Epic> getEpics();
     List<Subtask> getSubtasks();
@@ -18,9 +16,9 @@ public interface TaskManager {
     Epic getEpic(int id, HistoryManager historyManager);
     Epic getEpicForConstructorSubtask(int id);
 
-    void deleteAllTasks();
-    void deleteAllEpics();
-    void deleteAllSubtasks();
+    void deleteAllTasks(HistoryManager historyManager);
+    void deleteAllEpics(HistoryManager historyManager);
+    void deleteAllSubtasks(HistoryManager historyManager);
 
     void addObjectTask(Task task);
     void addObjectEpic(Epic epic);
@@ -30,9 +28,9 @@ public interface TaskManager {
     void updateEpic(Epic epic);
     void updateSubtask(Subtask subtask);
 
-    void deleteTaskById(int id);
-    void deleteEpicById(int id);
-    void deleteSubtaskById(int id);
+    void deleteTaskById(int id, HistoryManager historyManager);
+    void deleteEpicById(int id, HistoryManager historyManager);
+    void deleteSubtaskById(int id, HistoryManager historyManager);
 
     int getId();
 }

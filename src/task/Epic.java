@@ -10,10 +10,10 @@ public class Epic extends Task {
         super(id, name, description, status);
         subtasks = new ArrayList<>();
     }
-    public void addSubtaskToEpic(int idSubtask){
+    public void addSubtaskToEpic(int idSubtask) {
         subtasks.add(idSubtask);
     }
-    public int getNumberOfSubtasks(){
+    public int getNumberOfSubtasks() {
         return subtasks.size();
     }
 
