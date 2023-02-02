@@ -35,6 +35,5 @@ public interface TaskManager {
 
     int getId();
 
-
     List<Task> getHistory();
 }

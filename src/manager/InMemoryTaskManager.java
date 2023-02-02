@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class InMemoryTaskManager implements TaskManager {
-    private int id = 1;
+    protected int id = 1;
     protected HashMap<Integer, Task> tasks = new HashMap<>();
     protected HashMap<Integer, Epic> epics = new HashMap<>();
     protected HashMap<Integer, Subtask> subtasks = new HashMap<>();
@@ -105,7 +105,9 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public void addSubtask(Subtask subtask) {
         subtasks.put(subtask.getId(), subtask);
-        getEpicForConstructorSubtask(subtask.getIdEpic()).addSubtaskToEpic(subtask.getId());
+        Epic epic = getEpicForConstructorSubtask(subtask.getIdEpic());
+        epic.addSubtaskToEpic(subtask.getId());
+                //getEpicForConstructorSubtask(subtask.getIdEpic()).addSubtaskToEpic(subtask.getId());
         calculateStatusEpic(subtask.getIdEpic());
     }
     @Override
@@ -136,6 +138,7 @@ public class InMemoryTaskManager implements TaskManager {
                 }
             }
         }
+        addSubtask(subtask);
         calculateStatusEpic(subtask.getIdEpic());
     }
 
@@ -205,7 +208,12 @@ public class InMemoryTaskManager implements TaskManager {
         return res;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     protected void incremetId(){
         id++;
     }
+
 }
