@@ -1,14 +1,15 @@
 package task;
 
 import task.enums.Statuses;
+import task.enums.TasksType;
 
 import java.util.Objects;
 
 public class Task {
-    private int id;
-    private String name;
-    private String description;
-    Statuses status;
+    protected int id;
+    protected String name;
+    protected String description;
+    protected Statuses status;
 
     public Task(int id, String name, String description, Statuses status) {
         this.id = id;
@@ -60,5 +61,11 @@ public class Task {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, description, status);
+    }
+
+    @Override
+    public String toString() {
+        return id + "," + TasksType.TASK.toString() + "," + name + "," +
+                status + "," + description + ",";
     }
 }

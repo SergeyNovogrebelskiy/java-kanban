@@ -2,16 +2,16 @@ package task;
 
 import manager.TaskManager;
 import task.enums.Statuses;
+import task.enums.TasksType;
 
 import java.util.Objects;
 
 public class Subtask extends Task {
 
-    int idEpic;
-    public Subtask(int id, String name, String description, Statuses status, int idEpic, TaskManager taskManager) {
+    protected int idEpic;
+    public Subtask(int id, String name, String description, Statuses status, int idEpic) {
         super(id, name, description, status);
         this.idEpic = idEpic;
-        (taskManager.getEpicForConstructorSubtask(idEpic)).addSubtaskToEpic(id);
     }
 
     public int getIdEpic() {
@@ -34,5 +34,10 @@ public class Subtask extends Task {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), idEpic);
+    }
+
+    public String toString() {
+        return id + "," + TasksType.SUBTASK.toString() + "," + name + "," +
+                status + "," + description + "," + idEpic;
     }
 }

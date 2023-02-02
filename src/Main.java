@@ -1,4 +1,4 @@
-import manager.HistoryManager;
+import history.HistoryManager;
 import manager.Managers;
 import manager.TaskManager;
 import task.Epic;
@@ -6,81 +6,88 @@ import task.enums.Statuses;
 import task.Subtask;
 import task.Task;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
         TaskManager taskManager = Managers.getDefault();
-        HistoryManager historyManager = Managers.getDefaultHistory();
+        //HistoryManager historyManager = Managers.getDefaultHistory();
 
-        taskManager.addObjectTask(new Task(taskManager.getId(), "Task 1",
+        taskManager.addTask(new Task(taskManager.getId(), "Task 1",
                 "Description Task 1", Statuses.NEW));
-        taskManager.addObjectTask(new Task(taskManager.getId(), "Task 2",
+        taskManager.addTask(new Task(taskManager.getId(), "Task 2",
                 "Description Task 2", Statuses.NEW));
 
-        taskManager.addObjectEpic(new Epic(taskManager.getId(), "Epic1",
+        taskManager.addEpic(new Epic(taskManager.getId(), "Epic1",
                 "Description Epic 1", Statuses.NEW));
-        taskManager.addObjectEpic(new Epic(taskManager.getId(), "Epic2",
+        taskManager.addEpic(new Epic(taskManager.getId(), "Epic2",
                 "Description Epic 2", Statuses.NEW));
 
-        taskManager.addObjectSubtask(new Subtask(taskManager.getId(), "Subtask 1 for epic 1",
-                "Description subtask 1 for epic 1", Statuses.NEW, 3, taskManager));
-        taskManager.addObjectSubtask(new Subtask(taskManager.getId(), "Subtask 2 for epic 1",
-                "Description subtask 2 for epic 1", Statuses.NEW, 3, taskManager));
-        taskManager.addObjectSubtask(new Subtask(taskManager.getId(), "Subtask 3 for epic 1",
-                "Description subtask 3 for epic 1", Statuses.NEW, 3, taskManager));
-        taskManager.addObjectSubtask(new Subtask(taskManager.getId(), "Subtask 1 for epic 2",
-                "Description subtask 1 for epic 2", Statuses.NEW, 4, taskManager));
+        taskManager.addSubtask(new Subtask(taskManager.getId(), "Subtask 1 for epic 1",
+                "Description subtask 1 for epic 1", Statuses.NEW, 3));
+        taskManager.addSubtask(new Subtask(taskManager.getId(), "Subtask 2 for epic 1",
+                "Description subtask 2 for epic 1", Statuses.NEW, 3));
+        taskManager.addSubtask(new Subtask(taskManager.getId(), "Subtask 3 for epic 1",
+                "Description subtask 3 for epic 1", Statuses.NEW, 3));
+        taskManager.addSubtask(new Subtask(taskManager.getId(), "Subtask 1 for epic 2",
+                "Description subtask 1 for epic 2", Statuses.NEW, 4));
 
-        taskManager.getTask(1, historyManager);
-        printHistory(historyManager.getHistory());
-        taskManager.getEpic(4, historyManager);
-        printHistory(historyManager.getHistory());
-        taskManager.getSubtask(5, historyManager);
-        printHistory(historyManager.getHistory());
-        taskManager.getSubtask(7, historyManager);
-        printHistory(historyManager.getHistory());
-        taskManager.getTask(1, historyManager);
-        printHistory(historyManager.getHistory());
-        taskManager.getSubtask(7, historyManager);
-        printHistory(historyManager.getHistory());
-        taskManager.getTask(2, historyManager);
-        printHistory(historyManager.getHistory());
-        taskManager.getSubtask(5, historyManager);
-        printHistory(historyManager.getHistory());
-        taskManager.getEpic(3, historyManager);
-        printHistory(historyManager.getHistory());
-        taskManager.getSubtask(6, historyManager);
-        printHistory(historyManager.getHistory());
-        taskManager.getSubtask(6, historyManager);
-        printHistory(historyManager.getHistory());
-        taskManager.getSubtask(8, historyManager);
-        printHistory(historyManager.getHistory());
+        taskManager.getTask(1);
+        printHistory(taskManager.getHistory());
+        taskManager.getEpic(4);
+        printHistory(taskManager.getHistory());
+        taskManager.getSubtask(5);
+        printHistory(taskManager.getHistory());
+        taskManager.getSubtask(7);
+        printHistory(taskManager.getHistory());
+        taskManager.getTask(1);
+        printHistory(taskManager.getHistory());
+        taskManager.getSubtask(7);
+        printHistory(taskManager.getHistory());
+        taskManager.getTask(2);
+        printHistory(taskManager.getHistory());
+        taskManager.getSubtask(5);
+        printHistory(taskManager.getHistory());
+        taskManager.getEpic(3);
+        printHistory(taskManager.getHistory());
+        taskManager.getSubtask(6);
+        printHistory(taskManager.getHistory());
+        taskManager.getSubtask(6);
+        printHistory(taskManager.getHistory());
+        taskManager.getSubtask(8);
+        printHistory(taskManager.getHistory());
+        System.out.println(taskManager.getHistory().size() + "her");
 
-        taskManager.deleteTaskById(2, historyManager);
-        printHistory(historyManager.getHistory());
+//        taskManager.deleteTaskById(2);
+//        printHistory(taskManager.getHistory());
+//
+//        taskManager.deleteEpicById(3);
+//        printHistory(taskManager.getHistory());
 
-        taskManager.deleteEpicById(3, historyManager);
-        printHistory(historyManager.getHistory());
+        TaskManager taskManager2 = Managers.getDefault(new File("src/files", "history.csv"));
+        System.out.println(taskManager2.getHistory());
     }
     public static void printTask(TaskManager taskManager, int idTask, HistoryManager historyManager){
-        Task task = taskManager.getTask(idTask, historyManager);
+        Task task = taskManager.getTask(idTask);
         System.out.println("Task ID: " + task.getId() + "\t" + task.getName() + "\t" + task.getDescription() +
                 "\tStatus: " + task.getStatus());
     }
     public static void printEpic(TaskManager taskManager, int idEpic, HistoryManager historyManager){
-        Epic epic = taskManager.getEpic(idEpic, historyManager);
+        Epic epic = taskManager.getEpic(idEpic);
         System.out.println("Epic ID: " + epic.getId() + "\t" + epic.getName() + "\t" + epic.getDescription() +
                 "\tStatus: " + epic.getStatus() + "\tNumber of subtasks: " + epic.getNumberOfSubtasks());
     }
     public static void printSubtask(TaskManager taskManager, int idSubtask, HistoryManager historyManager){
-        Subtask subtask = taskManager.getSubtask(idSubtask, historyManager);
+        Subtask subtask = taskManager.getSubtask(idSubtask);
         System.out.println("Subtask ID: " + subtask.getId() + "\t" + subtask.getName() + "\t" +
                 subtask.getDescription() + "\tStatus: " + subtask.getStatus() + "\tEpic ID: " + subtask.getIdEpic());
     }
 
     public static void printHistory(List<Task> history){
+        System.out.print("History: ");
         for (int i = 0; i < history.size(); i++) {
             System.out.print(history.get(i).getName() + "  ");
         }
