@@ -97,19 +97,19 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         } catch (Exception exception) {
             exception.getStackTrace();
         }
-        try (Writer fileWriter = new FileWriter(historyFile)) {
-            fileWriter.write("id,type,name,status,description,epic\n");
+        try (Writer fileWriter = new FileWriter(historyFile); BufferedWriter bw = new BufferedWriter(fileWriter)) {
+            bw.write("id,type,name,status,description,epic\n");
             for (Task task: tasks.values()) {
-                fileWriter.write(task.toString() + "\n");
+                bw.write(task.toString() + "\n");
             }
             for (Epic task: epics.values()) {
-                fileWriter.write(task.toString() + "\n");
+                bw.write(task.toString() + "\n");
             }
             for (Subtask task: subtasks.values()) {
-                fileWriter.write(task.toString() + "\n");
+                bw.write(task.toString() + "\n");
             }
-            fileWriter.write("\n");
-            fileWriter.write(historyToString(historyManager));
+            bw.newLine();
+            bw.write(historyToString(historyManager));
         } catch (IOException exception) {
             System.out.println(exception.getMessage());
             exception.getStackTrace();
