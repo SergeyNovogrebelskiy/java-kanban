@@ -1,7 +1,5 @@
 package history;
 
-import history.HistoryManager;
-import manager.CustomLinkedList;
 import task.Task;
 
 import java.util.List;

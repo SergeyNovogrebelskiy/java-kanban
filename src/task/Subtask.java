@@ -9,8 +9,9 @@ import java.util.Objects;
 public class Subtask extends Task {
 
     protected int idEpic;
-    public Subtask(int id, String name, String description, Statuses status, int idEpic) {
-        super(id, name, description, status);
+    public Subtask(int id, String name, String description, Statuses status,
+                   String startTime, int duration, int idEpic) {
+        super(id, name, description, status, startTime, duration);
         this.idEpic = idEpic;
     }
 
@@ -38,6 +39,7 @@ public class Subtask extends Task {
 
     public String toString() {
         return id + "," + TasksType.SUBTASK.toString() + "," + name + "," +
-                status + "," + description + "," + idEpic;
+                status + "," + description + "," + startTime.format(formatter()) + "," +
+                duration + "," + getEndTime().format(formatter()) + "," + idEpic;
     }
 }

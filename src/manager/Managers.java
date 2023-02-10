@@ -1,16 +1,9 @@
 package manager;
 
-import exceptions.ManagerSaveException;
 import history.HistoryManager;
 import history.InMemoryHistoryManager;
-import task.Epic;
-import task.Subtask;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Managers {
     public static TaskManager getDefault() {
@@ -21,7 +14,7 @@ public class Managers {
         return FileBackedTasksManager.loadFromFile(file);
     }
 
-    public static HistoryManager getDefaultHistory() {
+    public static InMemoryHistoryManager getDefaultHistory() {
         return new InMemoryHistoryManager();
     }
 

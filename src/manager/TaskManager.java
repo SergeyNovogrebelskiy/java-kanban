@@ -4,8 +4,8 @@ import task.Epic;
 import task.Subtask;
 import task.Task;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 public interface TaskManager {
     List<Task> getTasks();
@@ -25,7 +25,7 @@ public interface TaskManager {
     void addEpic(Epic epic);
     void addSubtask(Subtask subtask);
 
-    void updateTasks(Task task);
+    void updateTask(Task task);
     void updateEpic(Epic epic);
     void updateSubtask(Subtask subtask);
 
@@ -36,4 +36,8 @@ public interface TaskManager {
     int getId();
 
     List<Task> getHistory();
+
+    Set<Task> getPrioritizedTasks();
+
+    List<Subtask> getSubtasksByEpic(Epic epic);
 }
