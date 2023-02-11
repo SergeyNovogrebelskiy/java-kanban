@@ -15,7 +15,7 @@ import java.util.*;
 public class FileBackedTasksManager extends InMemoryTaskManager {
 
     final private String historyFile;
-    final String path = "src/files/";
+    final String path = "resources/files";
 
     public FileBackedTasksManager(String file) {
         historyFile = file;
@@ -294,7 +294,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         System.out.println("Отсортированный список: " + taskManager.getPrioritizedTasks());
         printNameTasks(taskManager.getPrioritizedTasks());
 
-        TaskManager newTaskManager = Managers.getDefault(new File("src/files", "SaveTasks.csv"));
+        TaskManager newTaskManager = Managers.getDefault(new File("resources/files", "SaveTasks.csv"));
         printHistory(newTaskManager.getHistory());
         newTaskManager.addTask(new Task(taskManager.getId(), "Task 9",
                 "Description Task 9", Statuses.NEW, "20.02.23 11.00", 30));

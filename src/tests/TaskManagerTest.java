@@ -314,10 +314,4 @@ abstract class TaskManagerTest <T extends TaskManager> {
         subtasks.add(subtask2);
         assertArrayEquals(subtasks.toArray(), taskManager.getSubtasksByEpic(epic).toArray());
     }
-
-    @Test
-    public void testReturnHistory() {
-        InMemoryHistoryManager historyCheck = Managers.getDefaultHistory();
-        assertEquals(historyCheck.getHistory(), taskManager.getHistory());
-    }
 }

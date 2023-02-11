@@ -7,7 +7,7 @@ import java.io.*;
 
 public class Managers {
     public static TaskManager getDefault() {
-        return new FileBackedTasksManager("src/files/SaveTasks.csv");
+        return new FileBackedTasksManager("resources/files/SaveTasks.csv");
     }
 
     public static TaskManager getDefault(File file) {
