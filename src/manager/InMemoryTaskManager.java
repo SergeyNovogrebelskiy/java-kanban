@@ -172,14 +172,16 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public Set<Task> getPrioritizedTasks() {
-        return this.sortedTasks;
+    public List<Task> getPrioritizedTasks() {
+        List<Task> res = new ArrayList<>();
+        res.addAll(sortedTasks);
+        return res;
     }
 
     public void validateTask(Task newTask) {
         for (Task task : sortedTasks) {
-            if (newTask.getStartTime().isAfter(task.getStartTime()) &&
-                    newTask.getStartTime().isBefore(task.getEndTime())) {
+            if ((newTask.getStartTime().isBefore(task.getEndTime())) &&
+                    (newTask.getEndTime().isAfter(task.getStartTime()))) {
                 System.out.println("Ваши задача пересекается по времени выполнения!");
                 break;
             }

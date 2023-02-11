@@ -1,6 +1,7 @@
 package tests;
 
 import manager.FileBackedTasksManager;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import task.Epic;
 import task.Task;
@@ -16,6 +17,13 @@ class FileBackedTasksManagerTest extends TaskManagerTest<FileBackedTasksManager>
     FileBackedTasksManager createManager() {
         return new FileBackedTasksManager("src/files/SaveTasks.csv");
     }
+
+    File file = new File("resources/files/SaveTasks.csv");
+
+//    @AfterEach
+//    protected void tearDown() {
+//        assertTrue(file.delete());  // Тесты не проходят, поскольку в этой строке получается false
+//    }
 
     @Test
     public void testSaveToFileAndLoadFromFileWithoutHistory() {

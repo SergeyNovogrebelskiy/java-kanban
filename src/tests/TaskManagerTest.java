@@ -27,7 +27,7 @@ abstract class TaskManagerTest <T extends TaskManager> {
     }
 
     @Test
-    public void doesSubtasksHaveEpicAndEpicHaveSubtasksId() {
+    public void testSubtasksHaveEpicAndEpicHaveSubtasksId() {
         Epic epic = new Epic(taskManager.getId(), "Epic1", "Description Epic 1",
                 Statuses.IN_PROGRESS, "01.02.23 03.00", 6 * 24 * 60);
         Subtask subtask = new Subtask(taskManager.getId(), "Subtask 1 for epic 1",
@@ -40,7 +40,7 @@ abstract class TaskManagerTest <T extends TaskManager> {
     }
 
     @Test
-    public void shouldEpicStatusDoneWhenSubtasksDone() {
+    public void testEpicStatusDoneWhenSubtasksDone() {
         Epic epic = new Epic(taskManager.getId(), "Epic1", "Description Epic 1",
                 Statuses.IN_PROGRESS, "01.02.23 03.00", 6 * 24 * 60);
         Subtask subtask1 = new Subtask(taskManager.getId(), "Subtask 1 for epic 1",
@@ -172,7 +172,7 @@ abstract class TaskManagerTest <T extends TaskManager> {
     }
 
     @Test
-    public void shouldReturnTaskIfIdIsWrong() {
+    public void testReturnTaskIfIdIsWrong() {
         Task task1 = new Task(taskManager.getId(), "Task 1",
                 "Description Task 1", Statuses.NEW, "01.02.23 12.00", 60);
         taskManager.addTask(task1);
@@ -180,7 +180,7 @@ abstract class TaskManagerTest <T extends TaskManager> {
     }
 
     @Test
-    public void shouldReturnTaskById() {
+    public void testReturnTaskById() {
         Task task1 = new Task(taskManager.getId(), "Task 1",
                 "Description Task 1", Statuses.NEW, "01.02.23 12.00", 60);
         taskManager.addTask(task1);
@@ -188,7 +188,7 @@ abstract class TaskManagerTest <T extends TaskManager> {
     }
 
     @Test
-    public void shouldReturnSubtaskIfIdIsWrong() {
+    public void testReturnSubtaskIfIdIsWrong() {
         Epic epic = new Epic(taskManager.getId(), "Epic1", "Description Epic 1",
                 Statuses.IN_PROGRESS, "01.02.23 03.00", 6 * 24 * 60);
         Subtask subtask1 = new Subtask(taskManager.getId(), "Subtask 1 for epic 1",
@@ -200,7 +200,7 @@ abstract class TaskManagerTest <T extends TaskManager> {
     }
 
     @Test
-    public void shouldReturnSubtaskById() {
+    public void testReturnSubtaskById() {
         Epic epic = new Epic(taskManager.getId(), "Epic1", "Description Epic 1",
                 Statuses.IN_PROGRESS, "01.02.23 03.00", 6 * 24 * 60);
         Subtask subtask1 = new Subtask(taskManager.getId(), "Subtask 1 for epic 1",
@@ -212,7 +212,7 @@ abstract class TaskManagerTest <T extends TaskManager> {
     }
 
     @Test
-    public void shouldReturnEpicIfIdIsWrong() {
+    public void testReturnEpicIfIdIsWrong() {
         Epic epic = new Epic(taskManager.getId(), "Epic1", "Description Epic 1",
                 Statuses.IN_PROGRESS, "01.02.23 03.00", 6 * 24 * 60);
         taskManager.addEpic(epic);
@@ -220,7 +220,7 @@ abstract class TaskManagerTest <T extends TaskManager> {
     }
 
     @Test
-    public void shouldReturnEpicById() {
+    public void testReturnEpicById() {
         Epic epic = new Epic(taskManager.getId(), "Epic1", "Description Epic 1",
                 Statuses.IN_PROGRESS, "01.02.23 03.00", 6 * 24 * 60);
         taskManager.addEpic(epic);
@@ -232,7 +232,7 @@ abstract class TaskManagerTest <T extends TaskManager> {
         Task task = new Task(taskManager.getId(), "Task 1",
                 "Description Task 1", Statuses.NEW, "01.02.23 12.00", 60);
         Task newTask = new Task(1, "Task 1 update",
-                "Description Task 1 update", Statuses.DONE, "01.02.23 12.00", 60);
+                "Description Task 1 update", Statuses.DONE, "01.02.23 14.00", 60);
         taskManager.addTask(task);
         taskManager.updateTask(newTask);
         assertEquals(newTask, taskManager.getTask(task.getId()));
@@ -243,7 +243,7 @@ abstract class TaskManagerTest <T extends TaskManager> {
         Epic epic = new Epic(taskManager.getId(), "Epic1", "Description Epic 1",
                 Statuses.IN_PROGRESS, "01.02.23 03.00", 6 * 24 * 60);
         Subtask subtask1 = new Subtask(taskManager.getId(), "Subtask 1 for epic 1",
-                "Description subtask 1 for epic 1", Statuses.DONE, "01.02.23 09.00",
+                "Description subtask 1 for epic 1", Statuses.DONE, "01.01.23 09.00",
                 4 * 60, 1);
         taskManager.addEpic(epic);
         taskManager.addSubtask(subtask1);
@@ -297,7 +297,7 @@ abstract class TaskManagerTest <T extends TaskManager> {
     }
 
     @Test
-    public void shouldReturnListOfSubtaskByEpicId() {
+    public void testReturnListOfSubtaskByEpicId() {
         Epic epic = new Epic(taskManager.getId(), "Epic1", "Description Epic 1",
                 Statuses.IN_PROGRESS, "01.02.23 03.00", 6 * 24 * 60);
         Subtask subtask1 = new Subtask(taskManager.getId(), "Subtask 1 for epic 1",
@@ -316,7 +316,7 @@ abstract class TaskManagerTest <T extends TaskManager> {
     }
 
     @Test
-    public void shouldReturnHistory() {
+    public void testReturnHistory() {
         InMemoryHistoryManager historyCheck = Managers.getDefaultHistory();
         assertEquals(historyCheck.getHistory(), taskManager.getHistory());
     }

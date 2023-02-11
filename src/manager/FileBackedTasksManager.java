@@ -266,7 +266,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
         taskManager.addSubtask(new Subtask(taskManager.getId(), "Subtask 1 for epic 1",
                 "Description subtask 1 for epic 1", Statuses.NEW, "01.02.23 09.00",
-                4 * 60, 3));
+                3 * 60, 3));
         taskManager.addSubtask(new Subtask(taskManager.getId(), "Subtask 2 for epic 1",
                 "Description subtask 2 for epic 1", Statuses.NEW, "01.02.23 14.00",
                 2 * 24 * 60, 3));
@@ -291,7 +291,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         taskManager.getSubtask(8);
 
         printHistory(taskManager.getHistory());
-        System.out.println("Отсортированый список: " + taskManager.getPrioritizedTasks());
+        System.out.println("Отсортированный список: " + taskManager.getPrioritizedTasks());
         printNameTasks(taskManager.getPrioritizedTasks());
 
         TaskManager newTaskManager = Managers.getDefault(new File("src/files", "SaveTasks.csv"));
@@ -324,7 +324,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         System.out.println();
     }
 
-    public static void printNameTasks(Set<Task> taskSet){
+    public static void printNameTasks(List<Task> taskSet){
         System.out.print("Отсортированные имена: ");
         for (Task task: taskSet) {
             System.out.print("[ID " + task.getId() +  ", NAME " + task.getName() + "] ");
