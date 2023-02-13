@@ -108,11 +108,11 @@ public class HttpTaskServer {
                     } else {
                         int id = Integer.parseInt(deleteQuery.split("=")[1]);
                         if (manager.getTask(id) == null) {
-                            writeResponse(exchange, "Задача с id:" + id + " не найдена", 404);
+                            writeResponse(exchange, String.format("Задача с id: %d не найдена", id), 404);
                             break;
                         }
                         manager.deleteTaskById(id);
-                        writeResponse(exchange, "Задача id:" + id + " успешно удалена", 200);
+                        writeResponse(exchange, String.format("Задача с id: %d успешно удалена", id), 200);
                     }
                     break;
                 default:
