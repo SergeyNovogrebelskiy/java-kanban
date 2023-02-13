@@ -14,8 +14,12 @@ import java.util.*;
 
 public class FileBackedTasksManager extends InMemoryTaskManager {
 
-    final private String historyFile;
+    private String historyFile = "";
     final String path = "resources/files";
+
+    public FileBackedTasksManager() {
+
+    }
 
     public FileBackedTasksManager(String file) {
         historyFile = file;

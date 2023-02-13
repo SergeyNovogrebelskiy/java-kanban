@@ -10,6 +10,7 @@ import task.Subtask;
 import task.Task;
 import task.enums.Statuses;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +20,10 @@ abstract class TaskManagerTest <T extends TaskManager> {
 
     T taskManager;
 
-    abstract T createManager();
+    abstract T createManager() throws IOException, InterruptedException;
 
     @BeforeEach
-    public void beforeEach(){
+    public void beforeEach() throws IOException, InterruptedException {
         taskManager = createManager();
     }
 
